@@ -1,7 +1,7 @@
 <template>
    <input min="0" type="number" @input="changeAmount($event.target.value)" placeholder="Vložte částku"><br>
-   <button @click="activation(); convert();" :class="isActive ? 'activate' : false">Konvertovat</button>
-    <button class="favorite">Oblíbené</button>
+   <button @click="activationConvert(); convert();" :class="isActiveConvert ? 'activate' : false">Konvertovat</button>
+    <button class="favorite" @click="activationFav(); favorite()" :class="isActiveFav ? 'activate' : false">Oblíbené</button>
 </template>
 
 <script>
@@ -14,18 +14,27 @@
         convert: {
             type: Function,
             required: true
+        },
+        favorite: {
+            type: Function,
+            required: true
         }
     },
     data() {
         return {
-            isActive: false
+            isActiveConvert: false,
+            isActiveFav: false
 
     }
 },
     methods: {
-        activation() {
-            this.isActive = true;
-            setTimeout(() => {this.isActive = false}, 100);
+        activationConvert() {
+            this.isActiveConvert = true;
+            setTimeout(() => {this.isActiveConvert = false}, 100);
+        },
+        activationFav() {
+            this.isActiveFav = true;
+            setTimeout(() => {this.isActiveFav = false}, 100);
         }
     }
     
@@ -66,7 +75,7 @@
         scale: 0.9;
     }
 
-    .favorite {
+    button.favorite {
         margin-left: 20px;
     }
 

@@ -1,8 +1,8 @@
 <template>
     <ul>
-        <li @click="selectItem('BTC')" :class="current === 'BTC' ? 'active' : ''">Bitcoin</li>
-        <li @click="selectItem('ETH')" :class="current === 'ETH' ? 'active' : ''">ETH</li>
-        <li @click="selectItem('USDT')" :class="current === 'USDT' ? 'active' : ''">USDT</li>
+        <li @click="setCrypto('BTC')" :class="cryptoNow === 'BTC' ? 'active' : ''">Bitcoin</li>
+        <li @click="setCrypto('ETH')" :class="cryptoNow === 'ETH' ? 'active' : ''">ETH</li>
+        <li @click="setCrypto('USD')" :class="cryptoNow === 'USD' ? 'active' : ''">USD</li>
     </ul>
 </template>
 
@@ -12,17 +12,10 @@
             setCrypto: {
                 type: Function,
                 required: true
-            }
-        },
-        data() {
-            return {
-                current: ""
-            }
-        },
-        methods: {
-            selectItem(val) {
-                this.setCrypto(val);
-                this.current = val;
+            },
+            cryptoNow: {
+                type: String,
+                required: true
             }
         }
     }
@@ -45,7 +38,8 @@
     }
 
     li:hover, li.active {
-        background: #24043e;
+        border-radius: 13px;
+        background: #4f157e;
         cursor: pointer;
     }
 
